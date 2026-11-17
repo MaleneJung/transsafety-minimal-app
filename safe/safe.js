@@ -12,7 +12,7 @@ window.addEventListener("load", () => {
 
     const header = document.querySelector("#header");
     header.style.cursor = "pointer";
-    header.addEventListener("click", () => window.open("/", "_self"));
+    header.addEventListener("click", () => window.open("../", "_self"));
 
     const safeDataList = document.querySelector("#safe-data");
     init().then(() => {

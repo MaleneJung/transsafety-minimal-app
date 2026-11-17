@@ -17,7 +17,7 @@ window.addEventListener("load", () => {
             masterKey: safeMasterKeyIn.value
         };
         saveSafeFormData();
-        window.open("/safe/", "_self");
+        window.open("safe/", "_self");
     });
 
 });
