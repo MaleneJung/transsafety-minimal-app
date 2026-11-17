@@ -1,0 +1,21 @@
+{
+  "name": "Transsafety-Minimal",
+  "short_name": "Transsafety-Minimal",
+  "id": "./transsafety-minimal-app",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#333339",
+  "theme_color": "#3399FF",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "2048x2428",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon.ico",
+      "sizes": "256x256",
+      "type": "image/x-icon"
+    }
+  ]
+}

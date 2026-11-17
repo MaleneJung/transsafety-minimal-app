@@ -7,6 +7,11 @@
     <link rel="stylesheet" type="text/css" href="master.css">
     <script type="text/javascript" src="safe-form-data.js"> </script>
     <script type="text/javascript" src="safe-form.js"> </script>
+    <link rel="manifest" href="app.webmanifest" />
+    <script type="text/javascript">
+        if(navigator && navigator.serviceWorker)
+            navigator.serviceWorker.register("service-worker.js");
+    </script>
 </head>
 <body>
     <a id="safe-backup-nav" href="backup/"> <p> Backup Safes </p> </a>
