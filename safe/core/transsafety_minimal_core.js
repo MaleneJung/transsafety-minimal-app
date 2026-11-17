@@ -97,12 +97,14 @@ export function generate_cypher_key(key, len) {
  * @param {string} service
  * @param {string} user
  * @param {string} master_key
+ * @param {number} leak_count
  * @returns {string}
  */
-export function generate_password(service, user, master_key) {
-    let deferred4_0;
-    let deferred4_1;
+export function generate_password(service, user, master_key, leak_count) {
+    let deferred5_0;
+    let deferred5_1;
     try {
+        const val4 = +leak_count;
         let ptr0, len0, ptr1, len1, ptr2, len2;
         try {
             ptr0 = passStringToWasm0(service, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
@@ -117,12 +119,12 @@ export function generate_password(service, user, master_key) {
             if (ptr0) { wasm.__wbindgen_free(ptr0, len0 * 1, 1); }
             throw e;
         }
-        const ret = wasm.generate_password(ptr0, len0, ptr1, len1, ptr2, len2);
-        deferred4_0 = ret[0];
-        deferred4_1 = ret[1];
+        const ret = wasm.generate_password(ptr0, len0, ptr1, len1, ptr2, len2, val4);
+        deferred5_0 = ret[0];
+        deferred5_1 = ret[1];
         return getStringFromWasm0(ret[0], ret[1]);
     } finally {
-        wasm.__wbindgen_free(deferred4_0, deferred4_1, 1);
+        wasm.__wbindgen_free(deferred5_0, deferred5_1, 1);
     }
 }
 

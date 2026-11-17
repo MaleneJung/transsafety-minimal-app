@@ -14,12 +14,19 @@ window.addEventListener("load", () => {
     header.style.cursor = "pointer";
     header.addEventListener("click", () => window.open("../", "_self"));
 
-    const safeDataList = document.querySelector("#safe-data");
-    init().then(() => {
-        let password = generate_password(safeFormData.service, safeFormData.user, safeFormData.masterKey);
-        let passwordEntry = document.createElement("li");
-        passwordEntry.textContent = "Password: " + password;
-        safeDataList.appendChild(passwordEntry);
-    });
+    const safePWDisplay = document.querySelector("#safe-pw-display");
+    const safePWLeakCountIn = document.querySelector("#safe-pw-leak-count");
+
+    function updatePassword() {
+        init().then(() => {
+            let password = generate_password(safeFormData.service, safeFormData.user, safeFormData.masterKey, safePWLeakCountIn.value);
+            safePWDisplay.textContent = "Password: " + password;
+        });
+    }
+
+    const safeDataTextArea = document.querySelector("#safe-data");
+    
+    updatePassword();
+    safePWLeakCountIn.addEventListener("change", updatePassword);
 
 });
