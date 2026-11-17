@@ -13,6 +13,8 @@ export function generate_cypher_key(key: string, len: number): Uint8Array;
 
 export function generate_password(service: string, user: string, master_key: string, leak_count: number): string;
 
+export function generate_safe_id(service: string, user: string, master_key: string): string;
+
 export function get_higher_char(from: string): string;
 
 export function get_in_range(index: number, begin: number, end: number): number;
@@ -37,6 +39,7 @@ export interface InitOutput {
     readonly encrypt_text: (a: number, b: number, c: number, d: number) => [number, number];
     readonly generate_cypher_key: (a: number, b: number, c: number) => [number, number];
     readonly generate_password: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => [number, number];
+    readonly generate_safe_id: (a: number, b: number, c: number, d: number, e: number, f: number) => [number, number];
     readonly get_higher_char: (a: number) => number;
     readonly get_in_range: (a: number, b: number, c: number) => number;
     readonly get_lower_char: (a: number) => number;

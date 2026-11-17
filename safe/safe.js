@@ -1,5 +1,6 @@
 
 import init, { generate_password } from "./core/transsafety_minimal_core.js"
+import {loadedSafe, loadSafe, saveSafe} from "../safe-list.js"
 
 window.addEventListener("load", () => {
 
@@ -25,8 +26,25 @@ window.addEventListener("load", () => {
     }
 
     const safeDataTextArea = document.querySelector("#safe-data");
-    
+    safeDataTextArea.addEventListener("input", () => {
+        loadedSafe.safeData = safeDataTextArea.value;
+    });
+
+    const safeSaveButton = document.querySelector("#safe-save");
+    safeSaveButton.addEventListener("click", () => {
+        saveSafe();
+    });
+
     updatePassword();
-    safePWLeakCountIn.addEventListener("change", updatePassword);
+    safePWLeakCountIn.addEventListener("change", () => {
+        loadedSafe.safePWLeakCountModifier = safePWLeakCountIn.value;
+        saveSafe();
+        updatePassword();
+    });
+
+    loadSafe().then(() => {
+        safePWLeakCountIn.value = loadedSafe.safePWLeakCountModifier;
+        safeDataTextArea.value = loadedSafe.safeData;
+    });
 
 });

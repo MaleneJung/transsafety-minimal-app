@@ -6,15 +6,15 @@ let safeFormData = {
 };
 
 function loadSafeFormData() {
-    const sessionStr = sessionStorage.getItem("session");
-    if(sessionStr) {
-        safeFormData = JSON.parse(sessionStr);
+    const safeFormDataStr = sessionStorage.getItem("transsafety-minimal/safeFormData");
+    if(safeFormDataStr) {
+        safeFormData = JSON.parse(safeFormDataStr);
     }
 }
 
 function saveSafeFormData() {
-    const sessionStr = JSON.stringify(safeFormData);
-    sessionStorage.setItem("session", sessionStr);
+    const safeFormDataStr = JSON.stringify(safeFormData);
+    sessionStorage.setItem("transsafety-minimal/safeFormData", safeFormDataStr);
 }
 
 window.addEventListener("load", loadSafeFormData);
