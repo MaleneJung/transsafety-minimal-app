@@ -45,3 +45,21 @@ body {
     resize: none;
     margin: 0 0 0.5rem 0;
 }
+
+#backup-split {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-around;
+    margin-left: 0.5rem;
+}
+
+#backup-split textarea {
+    resize: none;
+    width: 48vw;
+    height: calc(100vh - 16rem);
+}
+
+#backup-split input {
+    width: 48.65vw;
+    height: 6rem;
+}

@@ -35,7 +35,6 @@ export async function loadSafe() {
             safePWLeakCountModifier: encryptedSafe.safePWLeakCountModifier,
             safeData: encryptedSafe.safeData.length > 0 ? decrypt_text(encryptedSafe.safeData, safePassword) : ""
         };
-        console.log("From Storage!");
     } else {
         loadedSafe = {
             safeID: safeID,
@@ -43,7 +42,6 @@ export async function loadSafe() {
             safeData: ""
         };
         saveSafe();
-        console.log("New in Storage!");
     }
 }
 
@@ -62,7 +60,7 @@ export async function saveSafe() {
     const encryptedSafeStr = JSON.stringify(encryptedSafe);
     localStorage.setItem("transsafety-minimal/safeList/" + loadedSafe.safeID, encryptedSafeStr);
 }
-/*
+
 export function exportBackup() {
     loadSafeList();
     let backupList = []
@@ -71,7 +69,11 @@ export function exportBackup() {
         if(encryptedSafeStr) 
             backupList.push(JSON.parse(encryptedSafeStr));
     });
-    const backupListStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupList));
+    return JSON.stringify(backupList, null, "\t");
+}
+
+export function downloadBackup(backup) {
+    const backupListStr = "data:text/json;charset=utf-8," + encodeURIComponent(backup);
     const tempAnchorNode = document.createElement("a");
     tempAnchorNode.href = backupListStr;
     tempAnchorNode.download = "transsafety-minimal-backup.json";
@@ -80,9 +82,20 @@ export function exportBackup() {
     tempAnchorNode.remove();
 }
 
-export function importBackup() {
+export function importBackup(backup) {
+    loadSafeList();
+    let backupList = JSON.parse(backup);
+    backupList.forEach((encryptedSafe) => {
+        if(encryptedSafe.safeID) {
+            if(!loadedSafeList.includes(encryptedSafe.safeID)) {
+                loadedSafeList.push(encryptedSafe.safeID);
+            }
+            localStorage.setItem("transsafety-minimal/safeList/" + encryptedSafe.safeID, JSON.stringify(encryptedSafe));
+        }
+    });
+    saveSafeList();
 }
 
-*/
+
 
 

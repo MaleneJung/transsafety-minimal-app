@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Transsafety Minimal Backup </title>
+    <link rel="stylesheet" href="../master.css" />
+    <script type="module" src="backup.js"> </script>
+</head>
+<body>
+    <div id="header">
+        <h1> &#8612; Transsafety Minimal </h1>
+    </div>
+    <div id="backup-split">
+        <form id="backup-export">
+            <textarea id="backup-json-export" readonly> </textarea>
+            <input type="submit" value="Export Safes" />
+        </form>
+        <form id="backup-import">
+            <textarea id="backup-json-import" required> </textarea>
+            <input type="submit" value="Import Safes" />
+        </form>
+    </div>
+</body>
+</html>
