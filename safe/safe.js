@@ -1,8 +1,15 @@
 
-import init, { generate_password } from "./core/transsafety_minimal_core.js"
+import init, { generate_password, js_test_storage, JsStorageHandler } from "../core/transsafety_minimal_core.js"
 import {loadedSafe, loadSafe, saveSafe} from "../safe-list.js"
 
 window.addEventListener("load", () => {
+
+    const storageHandler = JsStorageHandler.new(
+        () => undefined,
+        (key, val) => console.log("\"" + key + "\": \"" + val + "\""),
+        () => undefined,
+        () => undefined,
+    );
 
     const safeForHeader = document.querySelector("#safe-for");
     safeForHeader.textContent = (
@@ -20,6 +27,7 @@ window.addEventListener("load", () => {
 
     function updatePassword() {
         init().then(() => {
+            js_test_storage(storageHandler);
             let password = generate_password(safeFormData.service, safeFormData.user, safeFormData.masterKey, safePWLeakCountIn.value);
             safePWDisplay.textContent = "Password: " + password;
         });

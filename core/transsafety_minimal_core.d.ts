@@ -1,6 +1,20 @@
 /* tslint:disable */
 /* eslint-disable */
 
+export class JsHTTPHandler {
+    private constructor();
+    free(): void;
+    [Symbol.dispose](): void;
+    static new(fetch: Function): JsHTTPHandler;
+}
+
+export class JsStorageHandler {
+    private constructor();
+    free(): void;
+    [Symbol.dispose](): void;
+    static new(get: Function, set: Function, remove: Function, clear: Function): JsStorageHandler;
+}
+
 export function cypher_byte(base: number, add: number): number;
 
 export function decrypt_text(text: string, key: string): string;
@@ -33,6 +47,8 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
     readonly memory: WebAssembly.Memory;
+    readonly __wbg_jshttphandler_free: (a: number, b: number) => void;
+    readonly __wbg_jsstoragehandler_free: (a: number, b: number) => void;
     readonly cypher_byte: (a: number, b: number) => number;
     readonly decrypt_text: (a: number, b: number, c: number, d: number) => [number, number];
     readonly decypher_byte: (a: number, b: number) => number;
@@ -46,6 +62,8 @@ export interface InitOutput {
     readonly get_num_char: (a: number) => number;
     readonly get_special_char: (a: number) => number;
     readonly hex_to_u8s: (a: number, b: number) => [number, number];
+    readonly jshttphandler_new: (a: any) => number;
+    readonly jsstoragehandler_new: (a: any, b: any, c: any, d: any) => number;
     readonly u8s_to_hex: (a: number, b: number) => [number, number];
     readonly __wbindgen_externrefs: WebAssembly.Table;
     readonly __wbindgen_malloc: (a: number, b: number) => number;

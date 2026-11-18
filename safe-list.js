@@ -1,5 +1,5 @@
 
-import init, {generate_safe_id, decrypt_text, encrypt_text, generate_password} from "./safe/core/transsafety_minimal_core.js";
+import init, {generate_safe_id, decrypt_text, encrypt_text, generate_password} from "./core/transsafety_minimal_core.js";
 
 export let loadedSafe = {
     safeID: "",

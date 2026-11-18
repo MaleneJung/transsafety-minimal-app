@@ -1,5 +1,64 @@
 /* @ts-self-types="./transsafety_minimal_core.d.ts" */
 
+export class JsHTTPHandler {
+    static __wrap(ptr) {
+        const obj = Object.create(JsHTTPHandler.prototype);
+        obj.__wbg_ptr = ptr;
+        JsHTTPHandlerFinalization.register(obj, obj.__wbg_ptr, obj);
+        return obj;
+    }
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        JsHTTPHandlerFinalization.unregister(this);
+        return ptr;
+    }
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_jshttphandler_free(ptr, 0);
+    }
+    /**
+     * @param {Function} fetch
+     * @returns {JsHTTPHandler}
+     */
+    static new(fetch) {
+        const ret = wasm.jshttphandler_new(fetch);
+        return JsHTTPHandler.__wrap(ret);
+    }
+}
+if (Symbol.dispose) JsHTTPHandler.prototype[Symbol.dispose] = JsHTTPHandler.prototype.free;
+
+export class JsStorageHandler {
+    static __wrap(ptr) {
+        const obj = Object.create(JsStorageHandler.prototype);
+        obj.__wbg_ptr = ptr;
+        JsStorageHandlerFinalization.register(obj, obj.__wbg_ptr, obj);
+        return obj;
+    }
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        JsStorageHandlerFinalization.unregister(this);
+        return ptr;
+    }
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_jsstoragehandler_free(ptr, 0);
+    }
+    /**
+     * @param {Function} get
+     * @param {Function} set
+     * @param {Function} remove
+     * @param {Function} clear
+     * @returns {JsStorageHandler}
+     */
+    static new(get, set, remove, clear) {
+        const ret = wasm.jsstoragehandler_new(get, set, remove, clear);
+        return JsStorageHandler.__wrap(ret);
+    }
+}
+if (Symbol.dispose) JsStorageHandler.prototype[Symbol.dispose] = JsStorageHandler.prototype.free;
+
 /**
  * @param {number} base
  * @param {number} add
@@ -250,6 +309,9 @@ export function u8s_to_hex(v) {
 function __wbg_get_imports() {
     const import0 = {
         __proto__: null,
+        __wbg___wbindgen_throw_4c88d8bf264fd984: function(arg0, arg1) {
+            throw new Error(getStringFromWasm0(arg0, arg1));
+        },
         __wbindgen_init_externref_table: function() {
             const table = wasm.__wbindgen_externrefs;
             table.set(0, undefined);
@@ -264,6 +326,13 @@ function __wbg_get_imports() {
         "./transsafety_minimal_core_bg.js": import0,
     };
 }
+
+const JsHTTPHandlerFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_jshttphandler_free(ptr, 1));
+const JsStorageHandlerFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_jsstoragehandler_free(ptr, 1));
 
 function _assertChar(c) {
     if (typeof(c) === 'number' && (c >= 0x110000 || (c >= 0xD800 && c < 0xE000))) throw new Error(`expected a valid Unicode scalar value, found ${c}`);
