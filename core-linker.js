@@ -1,7 +1,7 @@
 
 import init, { JsHTTPHandler, JsStorageHandler, Safe, SafeArgs, SafeList } from "./core/transsafety_minimal_core.js"; 
 
-const STORAGE_KEY_PREFIX = "transsafety-minimal/";
+export const STORAGE_KEY_PREFIX = "transsafety-minimal/";
 
 export let sessionStorageHandler, localStorageHandler;
 
