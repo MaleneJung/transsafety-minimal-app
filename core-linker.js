@@ -1,11 +1,11 @@
 
-import init, { JsHTTPHandler, JsStorageHandler } from "./core/transsafety_minimal_core.js"; 
+import init, { JsHTTPHandler, JsStorageHandler, Safe, SafeArgs, SafeList } from "./core/transsafety_minimal_core.js"; 
 
 const STORAGE_KEY_PREFIX = "transsafety-minimal/";
 
 export let sessionStorageHandler, localStorageHandler;
 
-export async function linkStorageHandler() {
+export function linkStorageHandler() {
     sessionStorageHandler = JsStorageHandler.new(
         (key) => sessionStorage.getItem(STORAGE_KEY_PREFIX + key),
         (key, val) => sessionStorage.setItem(STORAGE_KEY_PREFIX + key, val),
@@ -22,7 +22,7 @@ export async function linkStorageHandler() {
 
 export let httpHandler;
 
-export async function linkHTTPHandler() {
+export function linkHTTPHandler() {
     httpHandler = JsHTTPHandler.new(
         async (request_json) => {
             const request = JSON.parse(request_json);
@@ -49,8 +49,29 @@ export async function linkHTTPHandler() {
     )    
 }
 
+export let safeArgs;
+
+export function linkSafeArgs() {
+    safeArgs = SafeArgs.js_load(sessionStorageHandler);
+}
+
+export let safeList;
+
+export function linkSafeList() {
+    safeList = SafeList.js_load(localStorageHandler);
+}
+
+export let safe;
+
+export function linkSafe() {
+    safe = Safe.js_load(safeArgs, localStorageHandler);
+}
+
 export async function linkCore() {
     await init();
-    await linkStorageHandler();
-    await linkHTTPHandler();
+    linkStorageHandler();
+    linkHTTPHandler();
+    linkSafeArgs();
+    linkSafeList();
+    linkSafe();
 }
