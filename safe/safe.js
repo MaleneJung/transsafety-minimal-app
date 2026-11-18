@@ -18,11 +18,20 @@ window.addEventListener("load", () => {
 
         const safePWDisplay = document.querySelector("#safe-pw-display");
         const safePWLeakCountIn = document.querySelector("#safe-pw-leak-count");
-
+        
         function updatePassword() {
-            let password = safeArgs.generate_password(safePWLeakCountIn.value);
-            safePWDisplay.textContent = "Password: " + password;
+            safePWDisplay.textContent = safeArgs.generate_password(safePWLeakCountIn.value);
         }
+
+        const safePWCopyBtn = document.querySelector("#safe-pw-copy");
+        safePWCopyBtn.addEventListener("click", () => {
+            if(navigator.clipboard) {
+                navigator.clipboard.writeText(safeArgs.generate_password(safePWLeakCountIn.value));
+                const pwCopyBtnPre = safePWCopyBtn.textContent;
+                safePWCopyBtn.textContent = "Copied!";
+                setTimeout(() => safePWCopyBtn.textContent = pwCopyBtnPre, 1024);
+            }
+        });
 
         const safeDataTextArea = document.querySelector("#safe-data");
         safeDataTextArea.addEventListener("input", () => {
