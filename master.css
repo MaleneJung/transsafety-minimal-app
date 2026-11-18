@@ -56,10 +56,30 @@ body {
 #backup-split textarea {
     resize: none;
     width: 48vw;
-    height: calc(100vh - 16rem);
+    height: calc(100vh - 17rem);
+    margin-bottom: 0.5rem;
 }
 
 #backup-split input {
     width: 48.65vw;
     height: 6rem;
+}
+
+textarea, button, input {
+    background-color: #111114;
+    color: #33FF99;
+    outline: none;
+    border: #FFFFFF88 1px solid;
+    border-radius: 12px;
+    padding: 8px;
+}
+
+textarea:focus, button:focus, button:hover, input:focus, input:hover {
+    border: #33FF99 1px solid;
+    border-radius: 8px;
+    transition: all 512ms ease;
+}
+
+a {
+    color: #33FF99;
 }
