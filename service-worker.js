@@ -2,8 +2,9 @@ const cacheName = "Transsafety_Minimal_Cache";
 const precachedResources = [
     "/", "/safe", "/backup", "/index.html", "/safe/index.html", "/backup/index.html",
     "/app.webmanifest", "/favicon.ico", "/favicon.png", "/service-worker.js",
-    "/safe-form-data.js", "/safe-form.js", "/safe-list.js", "/master.css",
-    "/safe/safe.js", "/safe/core/transsafety_minimal_core_bg.wasm", "/safe/core/transsafety_minimal_core.js",
+    "/safe-form.js", "/core-linker.js", "/master.css",
+    "/safe/safe.js", 
+    "/core/transsafety_minimal_core_bg.wasm", "/core/transsafety_minimal_core.js",
     "/backup/backup.js"
 ];
 
