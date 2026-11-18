@@ -87,3 +87,9 @@ textarea:focus, button:focus, button:hover, input:focus, input:hover {
 a {
     color: #33FF99;
 }
+
+@media (max-width: 600px) {
+    #safe-form {
+        width: calc(100vw - 4rem);
+    }
+}
